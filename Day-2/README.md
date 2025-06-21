@@ -24,6 +24,6 @@ This is a simple Student Management System. The program uses the concepts of Obj
 
 ## Author
 
-- **Zaka Bhai** –<br> Computer Science Student
+- **Zaka Ullah** –<br> Computer Science Student
 
 

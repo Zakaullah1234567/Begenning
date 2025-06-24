@@ -24,17 +24,6 @@ This project helps you understand:
 
 ---
 
-## How to Run
-
-1. Clone or download this repository.
-2. Open the `.cs` file using **Visual Studio** or any C# compiler.
-3. Build and run the program.
-4. Interact with the console menu.
-
----
-
----
-
 ## Concepts Used
 
 - Encapsulation (`private` fields with `public` properties)

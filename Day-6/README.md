@@ -35,15 +35,15 @@ This is a C# console application that demonstrates **abstraction** and **polymor
 
 2.JazzCash
 
-3.EasyPaisa
-Choose Payment Method (1-3): 2
-Enter your name: Zaka ullah
-Enter Your account number: 123456
-Enter payment amount: Rs. 500
+3.EasyPaisa <br>
+Choose Payment Method (1-3): 2<br>
+Enter your name: Zaka ullah<br>
+Enter Your account number: 123456<br>
+Enter payment amount: Rs. 500<br>
 
 *Zaka Ullah, your payment of Rs. 500 via JazzCash is successful.*
 
-
+<br>
 ---
 
 ## Author

@@ -34,16 +34,21 @@ public:
         if (head == NULL) {
             head = tail = newSong;
             current = head;
+            head->next = head;
+            head->prev = head;
             cout << "First song added: " << title << endl;
             return;
         }
 
         tail->next = newSong;
         newSong->prev = tail;
+        newSong->next = head;
+        head->prev = newSong;
         tail = newSong;
 
         cout << "Song added: " << title << endl;
     }
+
 
     void deleteSong(string title) {
         if (head == NULL) {
@@ -52,29 +57,35 @@ public:
         }
 
         Song* temp = head;
-        while (temp != NULL && temp->title != title)
+        bool found = false;
+        do {
+            if (temp->title == title) {
+                found = true;
+                break;
+            }
             temp = temp->next;
+        } while (temp != head);
 
-        if (temp == NULL) {
+        if (!found) {
             cout << "Song not found.\n";
             return;
         }
 
-        if (temp == head)
-            head = head->next;
-        if (temp == tail)
-            tail = tail->prev;
-        if (temp->prev != NULL)
+        if (temp == head && temp == tail) { 
+            head = tail = current = NULL;
+        }
+        else {
             temp->prev->next = temp->next;
-        if (temp->next != NULL)
             temp->next->prev = temp->prev;
-
-        if (current == temp)
-            current = temp->next != NULL ? temp->next : head;
+            if (temp == head) head = temp->next;
+            if (temp == tail) tail = temp->prev;
+            if (current == temp) current = temp->next;
+        }
 
         delete temp;
         cout << "Song deleted successfully.\n";
     }
+
 
     void searchSong(string title) {
         if (head == NULL) {
@@ -95,32 +106,25 @@ public:
     }
 
     void displayForward() {
-        if (head == NULL) {
-            cout << "Playlist is empty.\n";
-            return;
-        }
-
+        if (head == NULL) { cout << "Playlist is empty.\n"; return; }
         cout << "\n--- Playlist (Forward) ---\n";
         Song* temp = head;
-        while (temp != NULL) {
+        do {
             cout << temp->title << endl;
             temp = temp->next;
-        }
+        } while (temp != head);
     }
 
     void displayBackward() {
-        if (tail == NULL) {
-            cout << "Playlist is empty.\n";
-            return;
-        }
-
+        if (tail == NULL) { cout << "Playlist is empty.\n"; return; }
         cout << "\n--- Playlist (Backward) ---\n";
         Song* temp = tail;
-        while (temp != NULL) {
+        do {
             cout << temp->title << endl;
             temp = temp->prev;
-        }
+        } while (temp != tail);
     }
+
 
     void playNext() {
         if (current == NULL) {
@@ -128,14 +132,13 @@ public:
             return;
         }
 
-        if (current->next != NULL) {
-            current = current->next;
+        current = current->next;
+        if (current == head)
+            cout << "You are now on the first song: " << current->title << endl;
+        else
             cout << "Now playing: " << current->title << endl;
-        }
-        else {
-            cout << "You are at the last song.\n";
-        }
     }
+
 
     void playPrevious() {
         if (current == NULL) {
@@ -143,14 +146,13 @@ public:
             return;
         }
 
-        if (current->prev != NULL) {
-            current = current->prev;
+        current = current->prev;
+        if (current == tail)
+            cout << "You are now on the last song: " << current->title << endl;
+        else
             cout << "Now playing: " << current->title << endl;
-        }
-        else {
-            cout << "You are at the first song.\n";
-        }
     }
+
 
     void currentSong() {
         if (current != NULL)

@@ -1,44 +1,80 @@
-# Music Playlist Manager (C++)
+# Music Playlist Using Circular Doubly Linked List (C++)
 
-This project is a **console-based Music Playlist Manager** implemented in **C++** using a **Doubly Linked List**.  
-It allows users to add songs, delete songs, navigate through songs, search songs, and view the playlist in forward or backward order — just like a real music player.
+## Overview
+This project is a **console-based Music Playlist Management System** implemented in **C++** using a **Circular Doubly Linked List (CDLL)** data structure.
 
----
+It allows users to manage a playlist of songs just like a real music player, where:
+- Songs can be added or deleted dynamically
+- You can move **forward and backward** through the playlist
+- When you reach the **last song and press next**, the playlist automatically loops back to the **first song**
+- When you are at the **first song and press previous**, it moves to the **last song**
 
-## Features
-
-### Add Songs  
-Add a new song to the end of the playlist.
-
-### Delete Songs  
-Delete any song by its title.
-
-### Search Songs  
-Find whether a song exists in the playlist.
-
-### Display Playlist  
-- **Forward display** (head → tail)  
-- **Backward display** (tail → head)
-
-### Navigation  
-- Play next song  
-- Play previous song  
-- Show currently playing song
-
-### Doubly Linked List  
-Each song is stored as a node with `next` and `prev` pointers.
+This circular behavior makes the playlist continuous and user-friendly.
 
 ---
 
 ## Data Structure Used
 
-This project uses a **Doubly Linked List**, which allows:
-- Forward & backward traversal  
-- Easy insertion of new songs  
-- Smooth navigation between songs  
+### Circular Doubly Linked List
+Each song is stored as a **node** containing:
+- Song title
+- Pointer to the **next** song
+- Pointer to the **previous** song
+
+Because the list is **circular**:
+- `tail->next` points to `head`
+- `head->prev` points to `tail`
+
+This enables seamless looping through the playlist.
 
 ---
 
+## Features
+
+- Add a song to the playlist
+- Delete a song by title
+- Search for a song
+- Display playlist (forward)
+- Display playlist (backward)
+- Play next song (loops to first song automatically)
+- Play previous song (loops to last song automatically)
+- Show currently playing song
+
+---
+
+## Project Structure
+```
+Playlist.cpp   // Main C++ source file
+README.md      // Project documentation
+```
+
+---
+
+## How It Works
+
+- Songs are stored dynamically using a **Circular Doubly Linked List**
+- A `current` pointer keeps track of the currently playing song
+- Navigation is done using `next` and `prev` pointers
+- The program runs in a menu-driven loop until the user exits
+
+---
+
+## How to Run
+
+1. Open a terminal or command prompt
+2. Compile the program:
+```bash
+g++ Playlist.cpp -o Playlist
+```
+3. Run the executable:
+```bash
+./Playlist
+```
+
+---
+
+## Sample Menu
+```
 ==== MUSIC PLAYLIST MENU ====
 1. Add Song
 2. Delete Song
@@ -49,26 +85,33 @@ This project uses a **Doubly Linked List**, which allows:
 7. Play Previous Song
 8. Show Current Song
 9. Exit
-
----
-## Sample Output:
-
-Enter song title: Perfect
-Song added: Perfect
-
-Enter song title: Believer
-Song added: Believer
-
---- Playlist (Forward) ---
-Perfect
-Believer
+```
 
 ---
 
+## Learning Outcomes
 
-## Conclusion
+- Understanding **Circular Doubly Linked Lists**
+- Dynamic memory allocation using pointers
+- Real-world application of linked lists
+- Menu-driven programming in C++
 
-This Music Playlist Manager project successfully demonstrates the use of a **Doubly Linked List** to manage real-world data in C++.  
-It provides all essential playlist features including adding, deleting, searching, and navigating songs, making it a complete menu-driven application for beginners to understand pointer manipulation and data structure implementation.
+---
 
-**Developed by:** *Zaka Ullah*
+## Future Improvements
+
+- Shuffle mode
+- Save playlist to a file
+- Load playlist from a file
+- Song duration tracking
+- GUI-based version
+
+---
+
+## Author
+
+**Zaka Ullah**  
+Student of Computer Science  
+Focused on C++ and Data Structures
+
+---
